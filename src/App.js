@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
+import TodoListComponent from './TodoListComponent';
+import {addItem} from './appSlice'
+import { nanoid } from '@reduxjs/toolkit';
 
 function App() {
+
+  const [todo, setTodo] = useState('')
+  let dispatch = useDispatch()
+
+  const onchangeTodo = (e) => {
+    setTodo(e.target.value)
+  }
+
+  const createTodo = () => {
+    let todoItem = {
+      id: nanoid(),
+      name: todo,
+      striked: false
+    }
+    if(todo!=='') {
+      dispatch(addItem(todoItem))
+      setTodo('')
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>To do list</div>
+      <input value={todo} onChange={(e)=>onchangeTodo(e)}></input>
+      <button onClick={()=>createTodo()}>Add</button>
+      <TodoListComponent></TodoListComponent>
     </div>
   );
 }

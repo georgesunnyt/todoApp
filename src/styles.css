@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.striked {
+    color: red;
+    text-decoration: line-through;
+}
+
+.non-striked {
+    color: blue
+}
+
+.item {
+    display: flex;
+    width: 30vw;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(201, 201, 201);
+    border-radius: 2vw;
+    height: 10vh;
+    margin-top: 1vh;
+}
